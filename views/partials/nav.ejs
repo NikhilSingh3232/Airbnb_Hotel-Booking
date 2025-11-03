@@ -1,0 +1,88 @@
+<header class="bg-red-500 text-white shadow-md">
+  <nav class="container mx-auto px-6 h-16">
+    <div class="flex items-center justify-between h-full">
+      <!-- Left Side Navigation -->
+      <div class="flex items-center space-x-6">
+        <!-- Logo/Home Link -->
+        <a
+          href="/"
+          class="<%= currentPage === 'index' ? 'bg-red-600' : 'hover:bg-red-600' %> py-2 px-4 rounded-lg font-bold text-lg transition duration-150"
+        >
+          airbnb
+        </a>
+
+        <!-- Navigation Links for Logged In Users -->
+        <% if (isLoggedIn) { %>
+          <div class="flex items-center space-x-2">
+            <% if (user && user.userType === 'guest') { %>
+              <!-- Guest User Navigation -->
+              <a
+                href="/home"
+                class="<%= currentPage === 'home' ? 'bg-red-600' : 'hover:bg-red-600' %> py-2 px-4 rounded-lg transition duration-150"
+              >
+                Home List
+              </a>
+
+              <a
+                href="/bookings"
+                class="<%= currentPage === 'bookings' ? 'bg-red-600' : 'hover:bg-red-600' %> py-2 px-4 rounded-lg transition duration-150"
+              >
+                Bookings
+              </a>
+
+              <a
+                href="/favourites"
+                class="<%= currentPage === 'favourite-list' ? 'bg-red-600' : 'hover:bg-red-600' %> py-2 px-4 rounded-lg transition duration-150"
+              >
+                Favourite Home
+              </a>
+            <% } else { %>
+              <!-- Host User Navigation -->
+              <a
+                href="/host-home-lists"
+                class="<%= currentPage === 'host-homes' ? 'bg-red-600' : 'hover:bg-red-600' %> py-2 px-4 rounded-lg transition duration-150"
+              >
+                Host List
+              </a>
+
+              <a
+                href="/add-home"
+                class="<%= currentPage === 'addHome' ? 'bg-red-600' : 'hover:bg-red-600' %> py-2 px-4 rounded-lg transition duration-150 border border-white/20"
+              >
+                Add Home
+              </a>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Right Side Navigation -->
+      <div class="flex items-center space-x-4">
+        <% if (isLoggedIn) { %>
+          <form action="/logout" method="POST">
+            <button
+              type="submit"
+              class="hover:bg-red-600 py-2 px-4 rounded-lg transition duration-150"
+            >
+              Logout
+            </button>
+          </form>
+        <% } else { %>
+          <a 
+            href="/signup" 
+            class="hover:bg-red-600 py-2 px-4 rounded-lg transition duration-150"
+          >
+            Sign up
+          </a>
+
+          <a 
+            href="/login" 
+            class="bg-white text-red-500 hover:bg-red-50 py-2 px-4 rounded-lg font-medium transition duration-150 shadow-sm"
+          >
+            Login
+          </a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+</header>

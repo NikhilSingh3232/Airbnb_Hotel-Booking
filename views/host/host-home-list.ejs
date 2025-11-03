@@ -1,0 +1,31 @@
+<%- include('../partials/head') %>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <main class="container mx-auto bg-white shadow-lg rounded-lg p-8 mt-10 max-w-xl">
+      <h2 class="text-3xl text-red-500 font-bold text-center mb-6">
+        Hey Host! Here are your homes:
+      </h2>
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% registeredHomes.forEach(home => { %>
+    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+      <img src="<%= home.photo %>" alt="<%= home.houseName %>" class="h-48 w-full object-cover">
+      <div class="p-4 space-y-2">
+        <h2 class="text-xl font-semibold text-gray-800"><%= home.houseName %></h2>
+        <p class="text-gray-600"><strong>Location:</strong> <%= home.location %></p>
+        <p class="text-gray-600"><strong>Price:</strong> ₹<%= home.price %> / night</p>
+        <div class="flex items-center gap-1">
+          <span class="text-yellow-500 text-lg">★</span>
+          <span class="text-gray-700"><%= home.rating %>/5</span>
+        </div>
+        <a href="/edit-home/<%= home._id %>?editing=true" class="bg-blue-300 p-2">Edit</a>
+        <form action="/delete-home/<%= home._id %>" method="POST">
+                <button type="submit" class="bg-red-500 p-2">Delete</button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+</div>
+    </main>
+  </body>
+</html>
