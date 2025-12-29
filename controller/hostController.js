@@ -92,16 +92,7 @@ exports.postEditHome = (req, res, next) => {
 };
 
  
-// Delete-home
-// exports.postDeleteHome = (req, res, next) => {
-//   const homeId = req.params.homeId;
-//   console.log('Came to delete ', homeId);
-//   Home.deleteById(homeId).then(()=>{
-//     res.redirect("/host-home-lists");
-//   }).catch(error=>{
-//     console.log('Error while deleting ', error);
-//   });
-// };
+
 
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;

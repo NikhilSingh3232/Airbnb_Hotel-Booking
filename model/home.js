@@ -22,12 +22,6 @@ const homeSchema=mongoose.Schema({
 })
 
 
-// homeSchema.pre('findOneAndDelete', async function (next) {
-//   console.log("came to pre hook while come to delete home");
-//   const homeId = this.getQuery()._id;
-//   await favourite.deleteMany({ houseId: homeId }); 
-//   next();
-// });
 
 
 

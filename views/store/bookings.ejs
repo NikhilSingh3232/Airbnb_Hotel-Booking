@@ -2,7 +2,8 @@
 </head>
 <body class="bg-gray-100">
   <%- include('../partials/nav') %>
-   <main class="container mx-auto mt-10">
+
+  <main class="container mx-auto mt-10">
     <h1 class="text-3xl font-bold mb-6 text-center">My Bookings</h1>
 
     <% if (successMessage) { %>
@@ -17,12 +18,22 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <% bookings.forEach(booking => { %>
           <div class="border rounded-lg shadow-md p-4 bg-white">
-            <h2 class="font-bold text-lg mb-2"><%= booking.home.houseName %></h2>
-            <p><strong>Location:</strong> <%= booking.home.location %></p>
-            <p><strong>Check-In:</strong> <%= booking.checkIn.toDateString() %></p>
-            <p><strong>Check-Out:</strong> <%= booking.checkOut.toDateString() %></p>
-            <p><strong>Total Price:</strong> ₹<%= booking.totalPrice %></p>
-            <p class="text-green-600 font-semibold">Booking Confirmed ✅</p>
+
+            <% if (booking.home) { %>
+              <h2 class="font-bold text-lg mb-2">
+                <%= booking.home.houseName %>
+              </h2>
+              <p><strong>Location:</strong> <%= booking.home.location %></p>
+              <p><strong>Check-In:</strong> <%= booking.checkIn.toDateString() %></p>
+              <p><strong>Check-Out:</strong> <%= booking.checkOut.toDateString() %></p>
+              <p><strong>Total Price:</strong> ₹<%= booking.totalPrice %></p>
+              <p class="text-green-600 font-semibold">Booking Confirmed ✅</p>
+            <% } else { %>
+              <p class="text-red-500 font-semibold">
+                This home is no longer available
+              </p>
+            <% } %>
+
           </div>
         <% }); %>
       </div>
@@ -30,3 +41,4 @@
   </main>
 </body>
 </html>
+
